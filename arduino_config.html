@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ARDUINO • Cấu hình robot</title>
+<style>
+    .nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:16px;
+  display:flex;
+  justify-content:center;
+  z-index:3;
+}
+
+.btn.next{
+  --c1:#a8ff78;
+  --c2:#78ffd6;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 18px;
+  border-radius:999px;
+  color:#09131a;
+  font-weight:800;
+  text-decoration:none;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  box-shadow:0 8px 28px rgba(0,0,0,.35);
+  transition:transform .15s;
+}
+.btn.next:hover{
+  transform:translateY(-2px);
+}
+
+:root{--bg1:#0b1020;--bg2:#0f0525;--neon:#7afcff;--lime:#b6ff00;--text:245 248 255;--shadow:0 10px 35px rgba(0,0,0,.4)}
+*{box-sizing:border-box} html,body{height:100%}
+body{
+  margin:0; color:rgb(var(--text));
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background:
+    radial-gradient(1200px 1200px at 10% 10%,#121a3a 10%,transparent 50%),
+    radial-gradient(1200px 1200px at 90% 90%,#1a0b32 10%,transparent 55%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none}
+.gradient{position:absolute;inset:-25vmax;background:conic-gradient(from 0deg at 50% 50%,#00111a,#101040,#2a004a,#00111a);
+  filter:blur(80px) saturate(150%);animation:spin 24s linear infinite;opacity:.55}
+@keyframes spin{0%{transform:rotate(0) scale(1.05)}100%{transform:rotate(360deg) scale(1.05)}}
+canvas#fx{position:absolute;inset:0;opacity:.5}
+
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;
+  padding:10px 16px 6px;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)}
+header h1{margin:0;font-size:clamp(1.1rem,2.2vw + .6rem,2rem);font-weight:900;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+
+a.home{position:fixed;top:15px;left:15px;width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.12);color:var(--neon);font-size:22px;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-weight:700;border:2px solid rgba(122,252,255,.6);
+  box-shadow:0 0 8px rgba(122,252,255,.5),0 0 18px rgba(122,252,255,.4);
+  transition:transform .25s,box-shadow .3s,background .25s;animation:homePulse 3s ease-in-out infinite;z-index:3}
+a.home:hover{background:rgba(255,255,255,.25);transform:scale(1.1)}
+@keyframes homePulse{0%,100%{box-shadow:0 0 8px rgba(122,252,255,.5),0 0 18px rgba(122,252,255,.4)}
+50%{box-shadow:0 0 14px rgba(122,252,255,.8),0 0 28px rgba(122,252,255,.6),0 0 42px rgba(122,252,255,.4)}}
+
+.top-right{position:fixed;top:15px;right:15px;display:flex;gap:8px;z-index:3}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;
+  color:#09131a;font-weight:800;text-decoration:none;background:linear-gradient(90deg,#b6ff00,#7afcff);
+  box-shadow:0 8px 28px rgba(0,0,0,.35);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+
+main{position:relative;z-index:1;min-height:100dvh;display:flex;justify-content:center;padding:14px 16px 28px}
+.container{width:min(1200px,96%);}
+
+.gallery{
+  display:grid; gap:14px;
+  grid-template-columns: 1fr;             /* dọc mặc định */
+}
+@media (min-width: 900px){
+  .gallery{ grid-template-columns: 1fr 1fr; } /* ngang trên màn rộng */
+}
+.card{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  padding:12px;
+  box-shadow:var(--shadow);
+}
+.card h2{margin:4px 0 10px;font-size:1rem;color:#bcd7ff}
+.imgwrap{
+  background:rgba(255,255,255,.05);
+  border-radius:12px; padding:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+.imgwrap img{width:100%;height:auto;display:block;border-radius:10px}
+.caption{opacity:.85;margin-top:8px;font-size:.95rem}
+</style>
+</head>
+
+<nav class="nav">
+  <a class="btn next" href="arduino_course.html">⬅️ Quay lại</a>
+</nav>
+
+<body>
+<div class="backdrop"><div class="gradient"></div><canvas id="fx"></canvas></div>
+
+<header><h1>THÔNG TIN CẤU HÌNH ROBOT</h1></header>
+<a class="home" href="index.html" title="Về trang chủ">🏠</a>
+
+
+<main>
+  <div class="container">
+    <div class="gallery">
+      <!-- Ảnh 1: Thông số kỹ thuật/giới thiệu -->
+      <article class="card">
+        <h2>Giới thiệu & thông số kỹ thuật</h2>
+        <div class="imgwrap">
+          <a href="Arduino 2-1.png" target="_blank" rel="noopener">
+            <img src="Arduino 2-1.png" alt="Robot học tập và thi đấu - thông số kỹ thuật">
+          </a>
+        </div>
+        <div class="caption">Nhấn vào ảnh để mở kích thước lớn trong tab mới.</div>
+      </article>
+
+      <!-- Ảnh 2: Sơ đồ bố trí phần cứng -->
+      <article class="card">
+        <h2>Sơ đồ bố trí phần cứng</h2>
+        <div class="imgwrap">
+          <a href="Arduino 2-2.png" target="_blank" rel="noopener">
+            <img src="Arduino 2-2.png" alt="Sơ đồ bố trí phần cứng robot Arduino">
+          </a>
+        </div>
+        <div class="caption">Tên chân kết nối: động cơ, cảm biến, Bluetooth, màn OLED, v.v.</div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,d;const N=70,pts=[];
+  function R(){d=window.devicePixelRatio||1;w=c.width=innerWidth*d;h=c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
+  function I(){pts.length=0;for(let i=0;i<N;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.12*d,vy:(Math.random()-.5)*.12*d,r:(Math.random()*1.6+.6)*d})}
+  function S(){x.clearRect(0,0,w,h);x.fillStyle='rgba(255,255,255,.7)';
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fill()}
+    requestAnimationFrame(S)}
+  addEventListener('resize',()=>{R();I()}); R(); I(); S();
+})();
+</script>
+</body></html>

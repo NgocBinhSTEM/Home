@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>KODULAR • Trung cấp</title>
+<style>
+   /* Khung chứa ảnh robot */
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+}
+
+.ev3-img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+    /* Nút nổi video thống nhất phong cách với infor.html */
+.floating-video {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;               /* chuyển sang góc trái */
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #ff0000bb, #ff4b2b);
+  color: #fff;
+  font-size: 26px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 6px 25px rgba(255, 0, 0, 0.4);
+  z-index: 100;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.floating-video:hover {
+  transform: scale(1.12) rotate(-5deg);
+  box-shadow: 0 0 25px rgba(255, 80, 80, 0.6);
+  filter: brightness(1.1);
+}
+:root{--bg1:#0b1020;--bg2:#0f0525;--neon:#7afcff;--lime:#b6ff00;--accent:#ccff00;--text:245 248 255;--card:16 24 48;--shadow:0 10px 35px rgba(0,0,0,.4)}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;color:rgb(var(--text));font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background:radial-gradient(1200px 1200px at 10% 10%,#121a3a 10%,transparent 50%),
+             radial-gradient(1200px 1200px at 90% 90%,#1a0b32 10%,transparent 55%),
+             linear-gradient(135deg,var(--bg1),var(--bg2)); overflow-x:hidden;}
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none}
+.gradient{position:absolute;inset:-25vmax;background:conic-gradient(from 0deg at 50% 50%,#00111a,#101040,#2a004a,#00111a);
+  filter:blur(80px) saturate(150%);animation:spin 24s linear infinite;opacity:.55}
+@keyframes spin{0%{transform:rotate(0) scale(1.05)}100%{transform:rotate(360deg) scale(1.05)}}
+canvas#fx{position:absolute;inset:0;opacity:.5}
+
+header{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;
+  padding:10px 16px 6px;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)}
+header h1{margin:0;font-size:clamp(1.2rem,2.4vw + .6rem,2.1rem);font-weight:900;letter-spacing:.5px;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+
+a.home{position:fixed;top:15px;left:15px;width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.12);color:var(--neon);font-size:22px;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-weight:700;border:2px solid rgba(122,252,255,.6);
+  box-shadow:0 0 8px rgba(122,252,255,.5),0 0 18px rgba(122,252,255,.4);
+  transition:transform .25s,box-shadow .3s,background .25s;animation:homePulse 3s ease-in-out infinite;z-index:3}
+a.home:hover{background:rgba(255,255,255,.25);transform:scale(1.1)}
+@keyframes homePulse{0%,100%{box-shadow:0 0 8px rgba(122,252,255,.5),0 0 18px rgba(122,252,255,.4)}
+50%{box-shadow:0 0 14px rgba(122,252,255,.8),0 0 28px rgba(122,252,255,.6),0 0 42px rgba(122,252,255,.4)}}
+
+.register-top{position:fixed;top:15px;right:15px;z-index:3;display:inline-flex;gap:8px;align-items:center;
+  padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,#b6ff00,#7afcff);
+  color:#09131a;font-weight:800;text-decoration:none;box-shadow:0 8px 28px rgba(0,0,0,.35);transition:transform .15s}
+.register-top:hover{transform:translateY(-2px)}
+
+main{position:relative;z-index:1;min-height:100dvh;display:flex;justify-content:center;padding:12px 16px 80px}
+.container{width:min(1100px,95%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:18px 18px 12px;box-shadow:var(--shadow)}
+.subtitle{color:#bcd7ff;font-weight:800;text-align:center;margin-top:4px}
+h2{margin:12px 0 8px;font-size:1.1rem;text-align:center;color:var(--accent)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+ul{margin:0;padding-left:18px} li{margin:6px 0}
+    .facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin:8px 0 2px}
+    .fact{background:rgba(255,255,255,.06); border-radius:10px; padding:8px 12px}
+
+.nav{position:fixed;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:10px;z-index:2}
+.btn{--c1:#2af598;--c2:#009efd;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;
+  color:#09131a;font-weight:800;text-decoration:none;background:linear-gradient(90deg,var(--c1),var(--c2));
+  box-shadow:0 8px 28px rgba(0,0,0,.35);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)} .btn.dark{background:rgba(0,0,0,.55);color:#ddd;border:1px solid rgba(255,255,255,.2)}
+.btn.next{--c1:#a8ff78;--c2:#78ffd6} .btn.disabled{pointer-events:none;opacity:.6;filter:grayscale(40%)}
+</style>
+</head>
+<body>
+<div class="backdrop"><div class="gradient"></div><canvas id="fx"></canvas></div>
+
+<header><h1>KODULAR</h1></header>
+<a class="home" href="index.html" title="Về trang chủ">🏠</a>
+<a class="register-top" href="https://forms.gle/Ec8eMDfNeWAojdrK8" target="_blank" rel="noopener">📝 Đăng ký</a>
+<a href="kodular_bh.html" class="floating-video" title="Xem video hướng dẫn Kodular">📺</a>
+
+<main><div class="container">
+  <h2>LẬP TRÌNH ỨNG DỤNG DI ĐỘNG VỚI KODULAR - TRUNG CẤP</h2>
+      <div class="facts">
+        <div class="fact">👦 <b>Trình độ:</b> Lớp 6 trở lên</div>
+        <div class="fact">⏱️ <b>Thời lượng:</b> 12 buổi</div>
+        <div class="fact">🏫 <b>Lớp tiêu chuẩn:</b> 8 học sinh</div>
+        <div class="fact">💻 <b>Điều kiện:</b> Đã hoàn thành khóa sơ cấp hoặc tương đương</div>
+      </div>
+  <div class="grid" style="margin-top:6px">
+    <section class="card"><h2>🎯 MỤC ĐÍCH</h2>
+      <ul>
+        <li>Xây dựng UI & Media nâng cao.</li>
+        <li>Phát triển ứng dụng kết nối Bluetooth/WiFi để điều khiển thiết bị ngoại vi & Robot LEGO EV3.</li>
+        <li>Thực hiện các ứng dụng Android như: dịch thuật, phát video, điều khiển robot qua điện thoại.</li>
+      </ul>
+        <img src="Logo Kodular 2.jpg" alt="Robot LEGO EV3" class="ev3-img">
+    </section>
+
+    <section class="card"><h2>📘 NỘI DUNG KHÓA HỌC</h2>
+      <ul>
+        <li>👉 B1. Công cụ xây dựng UI nâng cao.</li>
+        <li>👉 B2. Làm việc với Media.</li>
+        <li>👉 B3. Ứng dụng Google Sheet.</li>
+        <li>👉 B4. Ứng dụng Social.</li>
+        <li>👉 B5. Ứng dụng Google.</li>
+        <li>👉 B6. Web API.</li>
+        <li>👉 B7. Kết nối Bluetooth.</li>
+        <li>👉 B8. Kết nối WiFi.</li>
+        <li>👉 B9. Lập trình điều khiển Robot LEGO EV3.</li>
+        <li>👉 B10. Lập trình tác vụ đồng thời.</li>
+        <li>👉 B11. Làm việc với đồ thị.</li>
+        <li>👉 B12. Trình bày dự án cuối khóa.</li>
+      </ul>
+    </section>
+
+    <section class="card"><h2>🏆 KẾT QUẢ ĐẠT ĐƯỢC</h2>
+      <ul>
+        <li>Hoàn thiện app kết nối Bluetooth/WiFi điều khiển thiết bị & robot.</li>
+        <li>Ra mắt 1 dự án Android hoàn chỉnh cuối khóa.</li>
+      </ul>
+       <img src="Kodular app2.png" alt="Robot LEGO EV3" class="ev3-img">
+    </section>
+  </div>
+</div></main>
+
+<nav class="nav">
+  <a class="btn next" href="kodular_basic.html">⬅️ Khóa trước</a>
+  <a class="btn dark disabled" href="#" aria-disabled="true">Khóa tiếp theo ➡️</a>
+</nav>
+
+<script>
+(function(){const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,d;const N=70,pts=[];
+function R(){d=window.devicePixelRatio||1;w=c.width=innerWidth*d;h=c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
+function I(){pts.length=0;for(let i=0;i<N;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.12*d,vy:(Math.random()-.5)*.12*d,r:(Math.random()*1.6+.6)*d})}
+function S(){x.clearRect(0,0,w,h);x.fillStyle='rgba(255,255,255,.7)';for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fill()}requestAnimationFrame(S)}
+addEventListener('resize',()=>{R();I()}); R(); I(); S();})();
+</script>
+</body></html>
