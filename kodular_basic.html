@@ -95,7 +95,7 @@ ul{margin:0;padding-left:18px} li{margin:6px 0}
 </style>
 </head>
 <body>
-<div class="backdrop"><div class="gradient"></div><canvas id="fx"></canvas></div>
+<div class="backdrop"><div class="gradient"></div></div>
 
 <header><h1>KODULAR</h1></header>
 <a class="home" href="index.html" title="Về trang chủ">🏠</a>
@@ -155,13 +155,10 @@ ul{margin:0;padding-left:18px} li{margin:6px 0}
 </nav>
 
 <script>
-(function(){const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,d;const N=70,pts=[];
-function R(){d=window.devicePixelRatio||1;w=c.width=innerWidth*d;h=c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
-function I(){pts.length=0;for(let i=0;i<N;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.12*d,vy:(Math.random()-.5)*.12*d,r:(Math.random()*1.6+.6)*d})}
-function S(){x.clearRect(0,0,w,h);x.fillStyle='rgba(255,255,255,.7)';for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fill()}requestAnimationFrame(S)}
-addEventListener('resize',()=>{R();I()}); R(); I(); S();})();
+
 </script>
 </body></html>
+
 
 
 
